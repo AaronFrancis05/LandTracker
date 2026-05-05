@@ -2,7 +2,7 @@ import { icons } from "./icons";
 
 export const tabs: AppTab[] = [
     { name: "index", title: "Home", icon: icons.home },
-    { name: "Search", title: "Search", icon: icons.activity },
+    { name: "Search", title: "Search", icon: icons.search },
     // { name: "insights", title: "Insights", icon: icons.activity },
     { name: "Profile", title: "Settings", icon: icons.setting },
 ];

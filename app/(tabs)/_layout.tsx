@@ -1,19 +1,28 @@
 // app/(tabs)/_layout.jsx
-import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
+import { useAuth } from '@clerk/clerk-expo';
+import { Redirect, Tabs } from 'expo-router';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {components, spacing,colors} from "@/constants/theme"
+import {components,colors} from "@/constants/theme"
 import {Image, View} from "react-native";
 import {tabs} from "@/constants/data";
-import clsx from "clsx";
+import { clsx } from "clsx";
 
 const tabBar=components.tabBar;
 
 
 export default function TabLayout() {
+    const { isLoaded, isSignedIn } = useAuth();
     const insets = useSafeAreaInsets();
 
-    const TabIcon= ({focused,icon}:TabIconProps)=>(
+    if (!isLoaded) {
+        return null;
+    }
+
+    if (!isSignedIn) {
+        return <Redirect href="/(auth)/sign-in" />;
+    }
+
+    const TabIcon= ({focused,icon}: any)=>(
 
             <View className={"tabs-icon"}>
                 <View className={clsx("tabs-pill",focused && "tabs-active")}>

@@ -3,6 +3,7 @@ import add from "@/assets/icons/add.png";
 import adobe from "@/assets/icons/adobe.png";
 import back from "@/assets/icons/back.png";
 import canva from "@/assets/icons/canva.png";
+import search from "@/assets/icons/search.png";
 import claude from "@/assets/icons/claude.png";
 import dropbox from "@/assets/icons/dropbox.png";
 import figma from "@/assets/icons/figma.png";
@@ -36,6 +37,7 @@ export const icons = {
     github,
     claude,
     canva,
+    search,
 } as const;
 
 export type IconKey = keyof typeof icons;

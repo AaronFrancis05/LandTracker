@@ -1,27 +1,34 @@
 import "../global.css"
+import { ClerkProvider } from "@clerk/clerk-expo";
+import { tokenCache } from "@clerk/clerk-expo/token-cache";
 import {SplashScreen, Stack} from "expo-router";
 import {useFonts} from "expo-font";
 import {useEffect} from "react";
 
-export default function RootLayout() {
-    const [fontsLoaded]=useFonts({
-        'sans-regular':require('./assets/fonts/sans-regular.ttf'),
-        'sans-bold':require('./assets/fonts/sans-semibold.ttf'),
-        'sans-medium':require('./assets/fonts/sans-light.ttf'),
-        'sans-semibold':require('./assets/fonts/sans-regular.ttf'),
-        'sans-extrabold':require('./assets/fonts/sans-extrabold.ttf'),
-        'sans-light':require('./assets/fonts/sans-light.ttf'),
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-    })
+export default function RootLayout() {
+    const [fontsLoaded, fontError] = useFonts({
+                'sans-regular':   require('../assets/fonts/PlusJakartaSans-Regular.ttf'),
+                'sans-bold':      require('../assets/fonts/PlusJakartaSans-Bold.ttf'),
+                'sans-medium':    require('../assets/fonts/PlusJakartaSans-Medium.ttf'),
+                'sans-semibold':  require('../assets/fonts/PlusJakartaSans-SemiBold.ttf'),
+                'sans-extrabold': require('../assets/fonts/PlusJakartaSans-ExtraBold.ttf'),
+                'sans-light':     require('../assets/fonts/PlusJakartaSans-Light.ttf'),
+            });
 
     useEffect(() => {
-        if(fontsLoaded){
-            SplashScreen.hideAsync()
-        }
-    }, [fontsLoaded]);
+                if(fontsLoaded || fontError){
+                        SplashScreen.hideAsync()
+                    }
+            }, [fontsLoaded, fontError]);
 
-    if(!fontsLoaded) return null
+    if(!fontsLoaded && !fontError) return null
 
 
-    return <Stack screenOptions={{headerShown: false}}  />;
+    return (
+        <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+            <Stack  screenOptions={{headerShown: false}} />
+        </ClerkProvider>
+    );
 }

@@ -1,28 +1,15 @@
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/preflight.css" layer(base);
-@import "tailwindcss/utilities.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import "nativewind/theme";
-
-@theme {
-    --color-background: #fff9e3;
-    --color-foreground: #081126;
-    --color-card: #fff8e7;
-    --color-muted: #f6eecf;
-    --color-muted-foreground: rgba(0, 0, 0, 0.6);
-    --color-primary: #081126;
-    --color-accent: #ea7a53;
-    --color-border: rgba(0, 0, 0, 0.1);
-    --color-success: #16a34a;
-    --color-destructive: #dc2626;
-    --color-subscription: #8fd1bd;
-
+:root {
     --font-sans: sans-regular;
-    --font-sans-light: sans-light ;
+    --font-sans-light: sans-light;
     --font-sans-regular: sans-regular;
-    --font-sans-bold: sans-bold ;
-    --font-sans-extrabold: sans-extrabold ;
-    --font-sans-semibold: sans-semibold ;
+    --font-sans-medium: sans-medium;
+    --font-sans-semibold: sans-semibold;
+    --font-sans-bold: sans-bold;
+    --font-sans-extrabold: sans-extrabold;
 
     --spacing-0: 0px;
     --spacing-1: 4px;
@@ -43,13 +30,6 @@
     --spacing-20: 80px;
     --spacing-24: 96px;
     --spacing-30: 120px;
-
-    --font-sans: sans-regular;
-    --font-sans-light: sans-light;
-    --font-sans-medium: sans-medium;
-    --font-sans-semibold: sans-semibold;
-    --font-sans-bold: sans-bold;
-    --font-sans-extrabold: sans-extrabold;
 }
 
 @layer components {
@@ -66,11 +46,11 @@
     }
 
     .tabs-glyph {
-        @apply size-6;
+        @apply size-6 tint-white;
     }
 
     .home-header {
-        @apply mb-2.5 flex-row items-center justify-between;
+        @apply mb-2.5 flex-col items-center justify-between;
     }
 
     .home-user {
